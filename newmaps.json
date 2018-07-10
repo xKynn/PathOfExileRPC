@@ -1,0 +1,1048 @@
+{  
+   "maps":[  
+      {  
+         "title":{  
+            "name":"Academy Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Acid Lakes Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Acton's Nightmare",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Alleyways Map",
+            "tier":"2"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Ancient City Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Arachnid Nest Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Arachnid Tomb Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Arcade Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Arena Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Arid Lake Map",
+            "tier":"2"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Armoury Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Arsenal Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Ashen Wood Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Atoll Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Barrows Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Basilica Map",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Bazaar Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Beach Map",
+            "tier":"1"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Belfry Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Bog Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Bone Crypt Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Burial Chambers Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Caer Blaidd, Wolfpack's Den",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Cage Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Caldera Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Canyon Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Carcass Map",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Castle Ruins Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Cells Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Cemetery Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Channel Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Chateau Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Chayula's Breachstone",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"City Square Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Colonnade Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Colosseum Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Conservatory Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Coral Ruins Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Core Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Courthouse Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Courtyard Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Coves Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Crimson Temple Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Crystal Ore Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Cursed Crypt Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Dark Forest Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Death and Taxes",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Defiled Cathedral Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Desert Map",
+            "tier":"2"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Desert Spring Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Dig Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Dunes Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Dungeon Map",
+            "tier":"1"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Esh's Breachstone",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"Estuary Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Excavation Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Factory Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Fields Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Flooded Mine Map",
+            "tier":"2"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Forge of the Phoenix Map",
+            "tier":"16"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Gardens Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Geode Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Ghetto Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Gorge Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Graveyard Map",
+            "tier":"1"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Grotto Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Hall of Grandmasters",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Hallowed Ground",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Harbinger Map (High Tier)",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Harbinger Map (Low Tier)",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Harbinger Map (Mid Tier)",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Haunted Mansion Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Iceberg Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Infested Valley Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Ivory Temple Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Jungle Valley Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Laboratory Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Lair Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Lair of the Hydra Map",
+            "tier":"16"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Lava Chamber Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Lava Lake Map",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Leyline Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Lighthouse Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Lookout Map",
+            "tier":"1"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Maelstr\u00f6m of Chaos",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Malformation Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Mao Kun",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Marshes Map",
+            "tier":"2"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Mausoleum Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Maze Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Maze of the Minotaur Map",
+            "tier":"16"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Mesa Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Mineral Pools Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Moon Temple Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Mud Geyser Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Museum Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Necropolis Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Oba's Cursed Trove",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Olmec's Sanctum",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Orchard Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Overgrown Ruin Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Overgrown Shrine Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Palace Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Park Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Pen Map",
+            "tier":"2"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Peninsula Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Phantasmagoria Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Pier Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Pillars of Arun",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Pit Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Pit of the Chimera Map",
+            "tier":"16"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Plateau Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Plaza Map",
+            "tier":"14"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Poorjoy's Asylum",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Port Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Precinct Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Primordial Pool Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Promenade Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Racecourse Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Ramparts Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Reef Map",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Relic Chambers Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Residence Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Scriptorium Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Sepulchre Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Shaped Academy Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Shipyard Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Shore Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Shrine Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Siege Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Spider Forest Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Spider Lair Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Springs Map",
+            "tier":"3"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Strand Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Sulphur Vents Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Summit Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Sunken City Map",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Temple Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Terrace Map",
+            "tier":"13"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Alluring Abyss",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Apex of Sacrifice",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Beachhead (High Tier)",
+            "tier":"15"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Beachhead (Low Tier)",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Beachhead (Mid Tier)",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Coward's Trial",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Pale Court",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Perandus Manor",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Putrid Cloister",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Shaper's Realm",
+            "tier":"17"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Twilight Temple",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"The Vinktar Square",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Thicket Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Torture Chamber Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Tower Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Toxic Sewer Map",
+            "tier":"5"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Tribunal Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Tropical Island Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Tul's Breachstone",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"Underground River Map",
+            "tier":"7"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Underground Sea Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Untainted Paradise",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Uul-Netol's Breachstone",
+            "tier":""
+         }
+      },
+      {  
+         "title":{  
+            "name":"Vaal Pyramid Map",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Vaal Temple Map",
+            "tier":"16"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Vault Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Vaults of Atziri",
+            "tier":"8"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Villa Map",
+            "tier":"12"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Volcano Map",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Waste Pool Map",
+            "tier":"9"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Wasteland Map",
+            "tier":"10"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Waterways Map",
+            "tier":"11"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Whakawairua Tuahu",
+            "tier":"4"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Wharf Map",
+            "tier":"6"
+         }
+      },
+      {  
+         "title":{  
+            "name":"Xoph's Breachstone",
+            "tier":""
+         }
+      }
+   ]
+}

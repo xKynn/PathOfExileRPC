@@ -1,0 +1,9 @@
+{
+"elder_guardians":
+    {
+        "The Eradicator": ["Repository of Derision", "Spires of Delusion", "Manor of Madness"],
+        "The Constrictor": ["Ruins of Despair", "Island of Devastation", "Sea of Isolation"],
+        "The Purifier": ["Vaults of Insanity", "Halls of Delirium", "Pits of Sorrow"],
+        "The Enslaver": ["River of Hysteria", "Desert of Dementia", "Wastes of Lunacy"]
+    }
+}
