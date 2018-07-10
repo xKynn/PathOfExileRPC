@@ -15,7 +15,7 @@ Discord RPC Client for Path of exile
     - Area: Fetch map icon if map, update RPC
   
 ### TODO:
-1. Decide on offline or online assets
+1. ~~Decide on offline or online assets~~ Assets apparently have to be online on discord dev panel
 2. Poll for logout?
 3. Log parsing
     - Check how many of the last messages?
