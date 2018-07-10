@@ -20,3 +20,4 @@ Discord RPC Client for Path of exile
 3. Log parsing
     - Check how many of the last messages?
 4. Poll Character API every x interval? Maybe check for if the character has levelled up since login
+    - Reminder for me: https://www.pathofexile.com/character-window/get-characters?accountName=xKynn valid char api call
