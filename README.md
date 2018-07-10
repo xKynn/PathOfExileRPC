@@ -6,16 +6,16 @@ Discord RPC Client for Path of exile
 2. If not, poll every 30s for game running
 3. Get path from getdir
 4. Poll Client.txt for events, events are as follows:
-  - Login
-  - Logout
-  - Area - Entering a new Area
+    - Login
+    - Logout
+    - Area - Entering a new Area
 5. Depending on event:
-  - Login: poll character API for path of exile, fetch latest character level and ascendancy/class, update RPC
-  - Logout: Update RPC as logged out
-  - Area: Fetch map icon if map, update RPC
+    - Login: poll character API for path of exile, fetch latest character level and ascendancy/class, update RPC
+    - Logout: Update RPC as logged out
+    - Area: Fetch map icon if map, update RPC
   
 ### TODO:
 1. Decide on offline or online assets
 2. Poll for logout?
 3. Log parsing
-  - Check how many of the last messages?
+    - Check how many of the last messages?
