@@ -70,7 +70,7 @@ class PoeRPC:
         asc = char['class']
         level = char['level']
         name = char['name']
-        details = f"{name} | Level {level} {asc}"
+        details = f"{name} | Level {level} {asc} in {char['league']} league"
         self.update_rpc('details', details)
         self.update_subdict('assets', 'large_image', asc.lower())
         self.update_subdict('assets', 'large_text', details)
@@ -169,7 +169,7 @@ class PoeRPC:
                 else:
                     self.dnd = False
         self.last_latest_message = log.split('\n')[-1] or log.split('\n')[-2]
-        if self.last_event == LogEvents.LOGOUT:
+        if self.last_event == LogEvents.LOGOUT and event != LogEvents.LOGOUT:
             await self.fetch_char()
         if event == LogEvents.AREA:
             await self.fetch_area_data(loc)
