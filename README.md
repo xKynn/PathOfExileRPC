@@ -20,8 +20,14 @@ Discord RPC Client for Path of exile
 3. Experience % to next level
 4. Turn into service or something for startup
 
-### Using / Installing
-#### Method 1
+### Using / Installing  
+#### Method 1 (Much easier)  
+1. Head to the releases tab on the top
+2. Download the latest release
+3. edit config.json, replace xKynn with your account name
+4. Run launcher.exe
+  
+#### Method 2
 Setting this up is actually super easy, though be warned it at the moment prints out a lot of garbage debug stuff on the console.  
 1. You need to have Python 3.6 (https://www.python.org/downloads/latest) While installing this make sure you tick these 2 Options.  
     - Add python to PATH
@@ -30,8 +36,3 @@ Setting this up is actually super easy, though be warned it at the moment prints
 3. To get it to work for your account, edit config.json with any text editor and replace xKynn with your account name.  
 4. Double click setup.bat and then run.bat
     - If setup.bat errors with access denied, right click and run it as admin
-#### Method 2 (Much easier)
-1. Head to the releases tab on the top
-2. Download the latest release
-3. edit config.json, replace xKynn with your account name
-4. Run launcher.exe
