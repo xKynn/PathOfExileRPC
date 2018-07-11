@@ -27,4 +27,5 @@ Setting this up is actually super easy, though be warned it at the moment prints
     - py launcher
 2. download/clone the repo using the green button on the top right.  
 3. To get it to work for your account, edit launcher.py with any text editor and replace xKynn with your account name.  
-4. Double click run.bat
+4. Double click setup.bat and then run.bat
+    - If setup.bat errors with access denied, right click and run it as admin
