@@ -2,8 +2,6 @@ import asyncio
 import aiohttp
 import rpc
 import time
-import hashlib
-import time
 import json
 
 from enum import Enum
@@ -12,10 +10,13 @@ from pathlib import Path
 
 CLIENT_ID = '466251900157820929'
 
+
 class LogEvents(Enum):
     LOGIN = 0
     LOGOUT = 1
     AREA = 2
+
+
 class PoeRPC:
     def __init__(self, loop, account_name):
         self.rpc = rpc.DiscordIpcClient.for_platform(CLIENT_ID)
@@ -35,10 +36,10 @@ class PoeRPC:
         with open('areas.json') as f:
             areas = json.load(f)
         self.locations.update(areas)
-        self.locations['guardians'] = ['forge of the phoenix', 'maze of the minotaur', 'lair of the hydra', 'pit of the chimera']
+        self.locations['guardians'] = ['forge of the phoenix', 'maze of the minotaur', 'lair of the hydra',
+                                       'pit of the chimera']
         with open('maps.json') as f:
             self.maps = json.load(f)
-        
 
     async def check_poe(self):
         """Try to check if poe is running every 15sec, disable RPC if not.
@@ -54,17 +55,20 @@ class PoeRPC:
 
     def update_rpc(self, field, value):
         self.current_rpc[field] = value
+
     def update_subdict(self, subdict, field, value):
         if subdict not in self.current_rpc.keys():
             self.current_rpc[subdict] = {}
         self.current_rpc[subdict][field] = value
+
     def submit_update(self):
         self.rpc.set_activity(self.current_rpc)
 
     async def fetch_char(self):
-        async with self.ses.get(f'https://www.pathofexile.com/character-window/get-characters?accountName={self.account_name}') as resp:
-            json = await resp.json()
-        for char in json:
+        async with self.ses.get(
+                f'https://www.pathofexile.com/character-window/get-characters?accountName={self.account_name}') as resp:
+            js = await resp.json()
+        for char in js:
             if 'lastActive' in char.keys():
                 break
         asc = char['class']
@@ -76,7 +80,7 @@ class PoeRPC:
         self.update_subdict('assets', 'large_text', details)
 
     @staticmethod
-    def fix_names(self, name):
+    def fix_names(name):
         return name.replace(',', '').replace("'", "").replace('ö', 'o').replace(' ', '_').lower()
 
     async def fetch_area_data(self, name):
@@ -92,9 +96,9 @@ class PoeRPC:
                     p = Path.cwd().joinpath(f'assets/{fixed_name}.png')
                     if p.is_file():
                         img = fixed_name
-                    elif int(map['tier']) <6:
+                    elif int(map['tier']) < 6:
                         img = 'white'
-                    elif 6 <= int(map['tier']) <=10:
+                    elif 6 <= int(map['tier']) <= 10:
                         img = 'yellow'
                     elif int(map['tier']) > 10:
                         img = 'red'
@@ -133,6 +137,7 @@ class PoeRPC:
         self.update_rpc('state', f'in {name}')
         if 'tier' in loc.keys():
             self.update_rpc('details', f"Tier: {loc['tier']}")
+
     async def handle_log_event(self, log):
         messages = reversed(log.split('\n'))
         event = None
@@ -141,7 +146,7 @@ class PoeRPC:
                 print('reached last msg')
                 break
             elif "You have entered" in message:
-                loc = message.split("You have entered ")[1].replace('.','')
+                loc = message.split("You have entered ")[1].replace('.', '')
                 print("entered", loc)
                 if self.last_location != loc and loc != "Arena":
                     event = LogEvents.AREA
@@ -179,8 +184,9 @@ class PoeRPC:
             self.update_rpc('state', 'On Character Selection')
         self.submit_update()
         self.last_event = event
+
     async def monitor_log(self):
-        """Monitor if log file has changed by calculating md5 hash,
+        """Monitor if log file has changed by checking last message,
         pass log to handler if yes, try again in 5 seconds"""
         print('monitor')
         while 1:
@@ -188,13 +194,14 @@ class PoeRPC:
                 break
             with open(self.log_path, encoding='utf-8') as f:
                 log = f.read()
-            #log = log.encode('utf-8')
+            # log = log.encode('utf-8')
             new_last = log.split('\n')[-1] or log.split('\n')[-2]
             print(new_last)
             if self.last_latest_message != new_last:
                 print('log change')
                 await self.handle_log_event(log)
             await asyncio.sleep(5)
+
     @staticmethod
     async def get_poe():
         """When initializing, keep trying to find a launched poe before we can init here"""
@@ -204,7 +211,7 @@ class PoeRPC:
                 await asyncio.sleep(10)
             else:
                 return poe
-                #return "I:/SteamLibrar/steamapps/common/Path of Exile"
+
     async def init(self):
         print('init')
         poe = await self.get_poe()
