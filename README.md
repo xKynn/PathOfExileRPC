@@ -27,8 +27,7 @@ As a college student i can only work on these fun projects in my free time, i wo
 #### Method 1 (Much easier)  
 1. Head to the releases tab on the top
 2. Download the latest release
-3. edit config.json, replace xKynn with your account name
-4. Run launcher.exe
+3. Run launcher.exe
   
 #### Method 2
 Setting this up is actually super easy, though be warned it at the moment prints out a lot of garbage debug stuff on the console.  
