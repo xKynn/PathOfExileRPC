@@ -1,5 +1,8 @@
 # PathOfExileRPC
 Discord RPC Client for Path of exile
+### Shameless Donation Link Plug
+As a college student i can only work on these fun projects in my free time, i would love if you can help me out!
+<a href='https://ko-fi.com/D1D6EXXV' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>  
 ### How it works  
 1. Get path of exile directory if game is running. (to keep this dependency free it uses a mix of ctypes, kernel32 and psapi to achieve this) 
 2. If not, poll every 30s for game running
