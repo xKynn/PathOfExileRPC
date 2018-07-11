@@ -70,7 +70,7 @@ class PoeRPC:
         asc = char['class']
         level = char['level']
         name = char['name']
-        details = f"Level {level} {asc} {name}"
+        details = f"{name} | Level {level} {asc}"
         self.update_rpc('details', details)
         self.update_subdict('assets', 'large_image', asc.lower())
         self.update_subdict('assets', 'large_text', details)
@@ -149,7 +149,7 @@ class PoeRPC:
                 else:
                     return
                 break
-            elif "Async connecting" in message:
+            elif "Async connecting" in message or "Abnormal disconnect" in message:
                 print('logout')
                 self.last_location = None
                 event = LogEvents.LOGOUT
@@ -173,6 +173,10 @@ class PoeRPC:
             await self.fetch_char()
         if event == LogEvents.AREA:
             await self.fetch_area_data(loc)
+        elif event == LogEvents.LOGOUT:
+            self.current_rpc = {}
+            self.update_subdict('assets', 'large_image', 'login_screen')
+            self.update_rpc('state', 'On Character Selection')
         self.submit_update()
         self.last_event = event
     async def monitor_log(self):
