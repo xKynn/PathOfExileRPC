@@ -17,9 +17,10 @@ class LogEvents(Enum):
 
 
 class PoeRPC:
-    def __init__(self, loop, account_name):
+    def __init__(self, loop, account_name, cookies):
         self.rpc = Presence(CLIENT_ID, pipe=0, loop=loop)
         self.rpc.connect()
+        self.cookies = cookies
         self.log_path = None
         self.on = True
         self.loop = loop
@@ -65,6 +66,10 @@ class PoeRPC:
                 f'https://www.pathofexile.com/character-window/get-characters?accountName={self.account_name}') as resp:
             js = await resp.json()
         for char in js:
+            if char is str():
+                print("Your character tab is set to be hidden or your profile is private\nchange private to true in config.json"
+                "and set the value for sessid as your POESESSID\nAlternatively you can also make your character tab or profile public.")
+                exit()
             if 'lastActive' in char.keys():
                 break
         asc = char['class']
@@ -175,7 +180,7 @@ class PoeRPC:
             await self.fetch_area_data(loc)
         elif event == LogEvents.LOGOUT:
             self.current_rpc = {}
-            self.update_subdict('assets', 'large_image', 'login_screen')
+            self.update_rpc('large_image', 'login_screen')
             self.update_rpc('state', 'On Character Selection')
         print(self.current_rpc)
         self.submit_update()
@@ -212,6 +217,6 @@ class PoeRPC:
         print('init')
         poe = await self.get_poe()
         self.log_path = f"{poe}/logs/Client.txt"
-        self.ses = aiohttp.ClientSession()
+        self.ses = aiohttp.ClientSession(cookies=self.cookies)
         self.loop.create_task(self.check_poe())
         self.loop.create_task(self.monitor_log())
