@@ -1,11 +1,11 @@
 import asyncio
 import aiohttp
-import rpc
 import time
 import json
 
 from enum import Enum
 from getdir import get_path
+from pypresence import Presence
 
 CLIENT_ID = '466251900157820929'
 
@@ -18,9 +18,9 @@ class LogEvents(Enum):
 
 class PoeRPC:
     def __init__(self, loop, account_name):
-        self.rpc = rpc.DiscordIpcClient.for_platform(CLIENT_ID)
+        self.rpc = Presence(CLIENT_ID, pipe=0, loop=loop)
+        self.rpc.connect()
         self.log_path = None
-        self.log_hash = None
         self.on = True
         self.loop = loop
         self.last_location = None
@@ -57,13 +57,8 @@ class PoeRPC:
     def update_rpc(self, field, value):
         self.current_rpc[field] = value
 
-    def update_subdict(self, subdict, field, value):
-        if subdict not in self.current_rpc.keys():
-            self.current_rpc[subdict] = {}
-        self.current_rpc[subdict][field] = value
-
     def submit_update(self):
-        self.rpc.set_activity(self.current_rpc)
+        self.rpc.update(**self.current_rpc)
 
     async def fetch_char(self):
         async with self.ses.get(
@@ -77,8 +72,8 @@ class PoeRPC:
         name = char['name']
         details = f"{name} | Level {level} {asc} in {char['league']} league"
         self.update_rpc('details', details)
-        self.update_subdict('assets', 'large_image', asc.lower())
-        self.update_subdict('assets', 'large_text', details)
+        self.update_rpc('large_image', asc.lower())
+        self.update_rpc('large_text', details)
 
     @staticmethod
     def fix_names(name):
@@ -131,9 +126,9 @@ class PoeRPC:
             img = 'waypoint'
         small_text = loc['name']
         timestamp = round(time.time())
-        self.update_subdict('assets', 'small_text', small_text)
-        self.update_subdict('assets', 'small_image', img)
-        self.update_subdict('timestamps', 'start', timestamp)
+        self.update_rpc('small_text', small_text)
+        self.update_rpc('small_image', img)
+        self.update_rpc('start', timestamp)
         self.update_rpc('state', f'in {name}')
         if 'tier' in loc.keys():
             self.update_rpc('details', f"Tier: {loc['tier']}")
@@ -182,6 +177,7 @@ class PoeRPC:
             self.current_rpc = {}
             self.update_subdict('assets', 'large_image', 'login_screen')
             self.update_rpc('state', 'On Character Selection')
+        print(self.current_rpc)
         self.submit_update()
         self.last_event = event
 
