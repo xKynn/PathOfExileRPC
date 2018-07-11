@@ -19,3 +19,12 @@ Discord RPC Client for Path of exile
     - Reminder for me: https://www.pathofexile.com/character-window/get-characters?accountName=xKynn valid char api call
 3. Experience % to next level
 4. Turn into service or something for startup
+
+### Using / Installing
+Setting this up is actually super easy, though be warned it at the moment prints out a lot of garbage debug stuff on the console.  
+1. You need to have Python 3.6 (https://www.python.org/downloads/latest) While installing this make sure you tick these 2 Options.  
+    - Add python to PATH
+    - py launcher
+2. download/clone the repo using the green button on the top right.  
+3. To get it to work for your account, edit launcher.py with any text editor and replace xKynn with your account name.  
+4. Double click run.bat
