@@ -6,7 +6,6 @@ import json
 
 from enum import Enum
 from getdir import get_path
-from pathlib import Path
 
 CLIENT_ID = '466251900157820929'
 
@@ -41,6 +40,8 @@ class PoeRPC:
         with open('maps.json') as f:
             self.maps = json.load(f)
 
+        with open('available_icons.json') as f:
+            self.icons = json.load(f)
     async def check_poe(self):
         """Try to check if poe is running every 15sec, disable RPC if not.
         Try to handle running init again if poe launches again?"""
@@ -93,8 +94,7 @@ class PoeRPC:
                 if name in map['name']:
                     loc = map
                     fixed_name = self.fix_names(name)
-                    p = Path.cwd().joinpath(f'assets/{fixed_name}.png')
-                    if p.is_file():
+                    if fixed_name in self.icons:
                         img = fixed_name
                     elif int(map['tier']) < 6:
                         img = 'white'
