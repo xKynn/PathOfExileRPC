@@ -25,7 +25,7 @@ As a college student i can only work on these fun projects in my free time, i wo
 
 ### Using / Installing  
 #### Method 1 (Much easier)  
-1. Head to the releases tab on the top
+1. Head to the releases tab on the top / Alternatively access the latest release from [here](https://github.com/xKynn/PathOfExileRPC/releases/latest)
 2. Download the latest release
 3. Run launcher.exe
   
