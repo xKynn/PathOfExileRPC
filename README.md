@@ -17,10 +17,10 @@ As a college student i can only work on these fun projects in my free time, i wo
     - Area: Fetch map icon if map, update RPC
   
 ### TODO:
-1. Do something when poe exits
+1. ~~Do something when poe exits~~ Done! Clear presence on poe exit
 2. Poll Character API every x interval? Maybe check for if the character has levelled up since login
     - Reminder for me: https://www.pathofexile.com/character-window/get-characters?accountName=xKynn valid char api call
-3. Experience % to next level
+3. ~~Experience % to next level~~ Done!
 4. Turn into service or something for startup
 
 ### Using / Installing  
