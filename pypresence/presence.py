@@ -117,7 +117,7 @@ class Presence:
             "nonce": '{:.20f}'.format(current_time)
         }
         self.send_data(1, payload)
-        return self.loop.run_until_complete(self.read_output())
+        return self.loop.create_task(self.read_output())
     
     def connect(self):
         self.loop.run_until_complete(self.handshake())
