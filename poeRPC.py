@@ -205,7 +205,7 @@ class PoeRPC:
                 break
             elif "Connect time" in message:
                 ping = message.split("was ")[1]
-                logger.info("Ping to instance was: {ping}"
+                logger.info("Ping to instance was: {ping}")
             elif "AFK mode is now" in message:
                 if message.split("AFK mode is now O")[1][0] == "N":
                     self.afk = True
@@ -240,7 +240,12 @@ class PoeRPC:
                 self.update_rpc('details', f"AFK: {self.afk_message}")
         if ping:
             state = self.current_rpc.get('state', '')
-            self.update_rpc('state', f'{state}{" | " if state else ""}Ping: {ping}'
+            if not 'Ping' in state:
+                self.update_rpc('state', f'{state}{" | " if state else ""}Ping: {ping}')
+            else:
+                current_ping = state.split('Ping: ')[1]
+                state = state.replace(current_ping, ping)
+                self.update_rpc('state', state)
         self.submit_update()
         self.last_event = event
 
