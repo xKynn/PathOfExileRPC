@@ -5,9 +5,11 @@ import json
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 from enum import Enum
 from getdir import get_path
 from pypresence import Presence
+from pypresence.exceptions import InvalidPipe
 
 CLIENT_ID = '466251900157820929'
 
@@ -21,7 +23,6 @@ class LogEvents(Enum):
 class PoeRPC:
     def __init__(self, loop, account_name, cookies):
         self.rpc = Presence(CLIENT_ID, pipe=0, loop=loop)
-        self.rpc.connect()
         self.cookies = cookies
         self.log_path = None
         self.on = True
@@ -279,6 +280,18 @@ class PoeRPC:
     async def init(self, restart=False):
         """Standard method for initialization called by launcher, sets up the aiohttp session
         and starts monitor loops on confirmation from get_poe"""
+        try:
+            await self.rpc.connect()
+        except:
+            logger.info("Discord not open, waiting for discord to launch...")
+            while 1:
+                try:
+                    await self.rpc.connect()
+                    logger.info("Discord launched")
+                    break
+                except:
+                    pass
+                await asyncio.sleep(5)
         logger.info("Waiting for path of exile to launch...")
         poe = await self.get_poe()
         self.log_path = f"{poe}/logs/Client.txt"

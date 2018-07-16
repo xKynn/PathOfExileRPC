@@ -119,8 +119,8 @@ class Presence:
         self.send_data(1, payload)
         return self.loop.create_task(self.read_output())
     
-    def connect(self):
-        self.loop.run_until_complete(self.handshake())
+    async def connect(self):
+        await self.handshake()
 
     def close(self):
         self.send_data(2, {'v': 1, 'client_id': self.client_id})
