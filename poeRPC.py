@@ -41,8 +41,6 @@ class PoeRPC:
             areas = json.load(f)
         logger.debug("Loaded areas")
         self.locations.update(areas)
-        self.locations['guardians'] = ['forge of the phoenix', 'maze of the minotaur', 'lair of the hydra',
-                                       'pit of the chimera']
         logger.debug("Loading maps")
         with open('maps.json') as f:
             self.maps = json.load(f)
@@ -166,9 +164,33 @@ class PoeRPC:
                     loc = {'name': "The Lord's Labyrinth"}
                     img = 'lab'
                     break
+
+        if not loc:
+            if "Azurite Mine" in name:
+                loc = {'name': "Azurite Mine"}
+                img = 'mine'
+
+        if not loc:
+            if "Menagerie" in name or name in self.locations['bestiary_bosses']:
+                loc = {'name': name}
+                img = 'menagerie'
+
+        if not loc:
+            if "absence of value" in name.lower():
+                loc = {'name': name}
+                img = 'elder'
+
+        if not loc:
+            for guardian in self.locations['elder_guardians']:
+                if name in self.locations['elder_guardians'][guardian]:
+                    loc = {'name': f"{name} - {guardian}"}
+                    img = guardian.split()[1].lower()
+                    break
+
         if not loc:
             loc = {'name': name}
             img = 'waypoint'
+
         small_text = loc['name']
         timestamp = round(time.time())
         self.update_rpc('small_text', small_text)
