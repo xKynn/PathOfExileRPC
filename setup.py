@@ -8,7 +8,7 @@ setup(
     options={
         'build_exe': {
             'packages': ['aiohttp', 'idna', 'asyncio'],
-            'include_files': ['pypresence/']
+            'include_files': ['pypresence/', 'areas.json', 'available_icons.json', 'experience.json', 'maps.json']
         },
     }
 )
