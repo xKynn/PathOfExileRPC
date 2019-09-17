@@ -17,14 +17,10 @@ As a college student i can only work on these fun projects in my free time, i wo
     - Area: Fetch map icon if map, update RPC
   
 ### TODO:
-1. ~~Do something when poe exits~~ Done! Clear presence on poe exit
-2. Poll Character API every x interval? Maybe check for if the character has levelled up since login
-    - Reminder for me: https://www.pathofexile.com/character-window/get-characters?accountName=xKynn valid char api call
-3. ~~Experience % to next level~~ Done!
-4. Turn into service or something for startup
+1. Create sysTray attachment for updates, balloon notifications, settings and accessible way to close a running process.
 
 ### Using / Installing  
-#### Method 1 (Much easier)  
+#### Method 1 (Recommended)  
 1. Head to the releases tab on the top / Alternatively access the latest release from [here](https://github.com/xKynn/PathOfExileRPC/releases/latest)
 2. Download the latest release
 3. Run launcher.exe
