@@ -202,7 +202,7 @@ class PoeRPC:
         self.update_rpc('small_image', img)
         self.update_rpc('start', timestamp)
         if 'tier' in loc.keys():
-            self.update_rpc('details', f"Tier: {loc['tier']}")
+            self.update_rpc('details', f"{loc['name']} | Tier: {loc['tier']} | ")
         elif 'details' in self.current_rpc:
             if 'Tier' in self.current_rpc['details']:
                 del self.current_rpc['details']
@@ -219,7 +219,7 @@ class PoeRPC:
                 break
             elif "You have entered" in message:
                 loc = message.split("You have entered ")[1].replace('.', '')
-                self.logger.info("Entered {loc}")
+                self.logger.info(f"Entered {loc}")
                 if self.last_location != loc and loc != "Arena":
                     event = LogEvents.AREA
                     self.last_location = loc
@@ -233,7 +233,7 @@ class PoeRPC:
                 break
             elif "Connect time" in message:
                 ping = message.split("was ")[1]
-                self.logger.info("Ping to instance was: {ping}")
+                self.logger.info(f"Ping to instance was: {ping}")
             elif "AFK mode is now" in message:
                 if message.split("AFK mode is now O")[1][0] == "N":
                     self.afk = True
@@ -253,7 +253,7 @@ class PoeRPC:
                     self.afk_message = ""
                     self.logger.info("DND: Turned Off")
         self.last_latest_message = log.split('\n')[-1] or log.split('\n')[-2]
-        if self.last_event == LogEvents.LOGOUT and event != LogEvents.LOGOUT:
+        if event != LogEvents.LOGOUT:
             await self.fetch_char()
         if event == LogEvents.AREA:
             await self.fetch_area_data(loc)
