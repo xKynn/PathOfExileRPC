@@ -7,7 +7,7 @@ setup(
     executables=[Executable("launcher.py")],
     options={
         'build_exe': {
-            'packages': ['aiohttp', 'idna', 'asyncio'],
+            'packages': ['aiohttp', 'idna', 'asyncio', 'win32com'],
             'include_files': ['pypresence/', 'areas.json', 'available_icons.json', 'experience.json', 'maps.json']
         },
     }

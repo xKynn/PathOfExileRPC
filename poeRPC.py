@@ -2,9 +2,7 @@ import asyncio
 import aiohttp
 import time
 import json
-import logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+
 
 from enum import Enum
 from getdir import get_path
@@ -21,12 +19,13 @@ class LogEvents(Enum):
 
 
 class PoeRPC:
-    def __init__(self, loop, account_name, cookies):
+    def __init__(self, loop, account_name, cookies, logger):
         self.rpc = Presence(CLIENT_ID, pipe=0, loop=loop)
         self.cookies = cookies
         self.log_path = None
         self.on = True
         self.loop = loop
+        self.logger = logger
         self.last_location = None
         self.last_latest_message = ""
         self.last_event = LogEvents.LOGOUT
@@ -36,39 +35,45 @@ class PoeRPC:
         self.account_name = account_name
         self.current_rpc = {}
         self.locations = {}
-        logger.debug("Loading areas")
+        self.quit = False
+        self.logger.debug("Loading areas")
         with open('areas.json') as f:
             areas = json.load(f)
-        logger.debug("Loaded areas")
+        self.logger.debug("Loaded areas")
         self.locations.update(areas)
-        logger.debug("Loading maps")
+        self.logger.debug("Loading maps")
         with open('maps.json') as f:
             self.maps = json.load(f)
-        logger.debug("Loaded maps")
+        self.logger.debug("Loaded maps")
 
-        logger.debug("Loading icon refs")
+        self.logger.debug("Loading icon refs")
         with open('available_icons.json') as f:
             self.icons = json.load(f)
-        logger.debug("Loaded icon refs")
+        self.logger.debug("Loaded icon refs")
 
-        logger.debug("Loading xp ref")
+        self.logger.debug("Loading xp ref")
         with open('experience.json') as f:
             self.xp = json.load(f)
-        logger.debug("Loaded xp ref")
+        self.logger.debug("Loaded xp ref")
+
+    def do_quit(self):
+        self.quit = True
 
     async def check_poe(self):
         """Tries to check if poe is running every 15sec, clears RPC if not.
         Waits for poe to start again, calls init again with restart as True"""
         while 1:
+            if self.quit:
+                break
             poe = get_path()
             if not poe:
                 if self.on:
-                    logger.debug("PoE no longer open, setting on to false")
+                    self.logger.debug("PoE no longer open, setting on to false")
                     self.on = False
                     self.rpc.clear()
             else:
                 if not self.on:
-                    logger.debug(f"Found launched poe at {poe} setting on to True and restarting init")
+                    self.logger.debug(f"Found launched poe at {poe} setting on to True and restarting init")
                     self.on = True
                     self.loop.create_task(self.init(restart=True))
             await asyncio.sleep(15)
@@ -80,7 +85,7 @@ class PoeRPC:
     def submit_update(self):
         """rpc.update takes in everything as a kwarg, using splat operator the current_rpc
         dict is turned into kwargs and passed to update"""
-        logger.debug(f"Submitting rpc update with content: {self.current_rpc}")
+        self.logger.debug(f"Submitting rpc update with content: {self.current_rpc}")
         self.rpc.update(**self.current_rpc)
 
     async def fetch_char(self):
@@ -92,7 +97,7 @@ class PoeRPC:
             # js is still a valid json on error, if you try to iterate over the items, compared to a valid request
             # it is an str and not a dict, thus this works.
             if char is str():
-                logger.info("Your character tab is set to be hidden or your profile is private\nchange private to true in config.json"
+                self.logger.info("Your character tab is set to be hidden or your profile is private\nchange private to true in config.json"
                 "and set the value for sessid as your POESESSID\nAlternatively you can also make your character tab or profile public.")
                 exit()
             if 'lastActive' in char.keys():
@@ -210,11 +215,11 @@ class PoeRPC:
         ping = None
         for ind, message in enumerate(messages):
             if message == self.last_latest_message:
-                logger.debug(f"Reached last message from previous update: {message}")
+                self.logger.debug(f"Reached last message from previous update: {message}")
                 break
             elif "You have entered" in message:
                 loc = message.split("You have entered ")[1].replace('.', '')
-                logger.info("Entered {loc}")
+                self.logger.info("Entered {loc}")
                 if self.last_location != loc and loc != "Arena":
                     event = LogEvents.AREA
                     self.last_location = loc
@@ -222,31 +227,31 @@ class PoeRPC:
                     return
                 break
             elif "Async connecting" in message or "Abnormal disconnect" in message:
-                logger.info("On character selection")
+                self.logger.info("On character selection")
                 self.last_location = None
                 event = LogEvents.LOGOUT
                 break
             elif "Connect time" in message:
                 ping = message.split("was ")[1]
-                logger.info("Ping to instance was: {ping}")
+                self.logger.info("Ping to instance was: {ping}")
             elif "AFK mode is now" in message:
                 if message.split("AFK mode is now O")[1][0] == "N":
                     self.afk = True
                     self.afk_message = message.split('Autoreply "')[1][:-1]
-                    logger.info(f"AFK: {self.afk_message}")
+                    self.logger.info(f"AFK: {self.afk_message}")
                 else:
                     self.afk = False
                     self.afk_message = ""
-                    logger.info("AFK: Turned Off")
+                    self.logger.info("AFK: Turned Off")
             elif "DND mode is now" in message:
                 if message.split("DND mode is now O")[1][0] == "N":
                     self.dnd = True
                     self.afk_message = message.split('Autoreply "')[1][:-1]
-                    logger.info(f"DND: {self.afk_message}")
+                    self.logger.info(f"DND: {self.afk_message}")
                 else:
                     self.dnd = False
                     self.afk_message = ""
-                    logger.info("DND: Turned Off")
+                    self.logger.info("DND: Turned Off")
         self.last_latest_message = log.split('\n')[-1] or log.split('\n')[-2]
         if self.last_event == LogEvents.LOGOUT and event != LogEvents.LOGOUT:
             await self.fetch_char()
@@ -275,17 +280,19 @@ class PoeRPC:
     async def monitor_log(self):
         """Monitors if log file has changed by checking last message,
         passes log to handler if yes, tries again in 5 seconds"""
-        logger.info("Log monitor has started")
+        self.logger.info("Log monitor has started")
         while 1:
+            if self.quit:
+                break
             if not self.on:
-                logger.info("Log monitor now sleeping")
+                self.logger.info("Log monitor now sleeping")
                 break
             with open(self.log_path, encoding='utf-8') as f:
                 log = f.read()
             # log = log.encode('utf-8')
             new_last = log.split('\n')[-1] or log.split('\n')[-2]
             if self.last_latest_message != new_last:
-                logger.debug(f"Log update observed: {new_last}")
+                self.logger.debug(f"Log update observed: {new_last}")
                 await self.handle_log_event(log)
             await asyncio.sleep(5)
 
@@ -305,19 +312,21 @@ class PoeRPC:
         try:
             await self.rpc.connect()
         except:
-            logger.info("Discord not open, waiting for discord to launch...")
+            self.logger.info("Discord not open, waiting for discord to launch...")
             while 1:
+                if self.quit:
+                    break
                 try:
                     await self.rpc.connect()
-                    logger.info("Discord launched")
+                    self.logger.info("Discord launched")
                     break
                 except:
                     pass
                 await asyncio.sleep(5)
-        logger.info("Waiting for path of exile to launch...")
+        self.logger.info("Waiting for path of exile to launch...")
         poe = await self.get_poe()
         self.log_path = f"{poe}/logs/Client.txt"
-        logger.info(f"Found path of exile log at {self.log_path}")
+        self.logger.info(f"Found path of exile log at {self.log_path}")
         self.ses = aiohttp.ClientSession(cookies=self.cookies)
         if not restart:
             self.loop.create_task(self.check_poe())
