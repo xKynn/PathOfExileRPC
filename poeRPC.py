@@ -1,5 +1,6 @@
 import asyncio
 import aiohttp
+import sys
 import time
 import json
 
@@ -286,6 +287,7 @@ class PoeRPC:
                 break
             if not self.on:
                 self.logger.info("Log monitor now sleeping")
+                await self.ses.close()
                 break
             with open(self.log_path, encoding='utf-8') as f:
                 log = f.read()
@@ -323,6 +325,7 @@ class PoeRPC:
                 except:
                     pass
                 await asyncio.sleep(5)
+
         self.logger.info("Waiting for path of exile to launch...")
         poe = await self.get_poe()
         self.log_path = f"{poe}/logs/Client.txt"

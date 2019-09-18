@@ -1,13 +1,18 @@
 import asyncio
+import atexit
 import json
 import os
 import logging
-
+import sys
+if hasattr(sys, "frozen"):
+    import win32api
 
 from poeRPC import PoeRPC
+from pkg_resources import parse_version
 from shutil import copy as cp
 from getdir import drives
 from pathlib import Path
+from urllib import request
 from win32com.shell import shell, shellcon
 
 
@@ -17,6 +22,21 @@ logging.basicConfig(level=logging.INFO)
 class Launcher:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
+        if hasattr(sys, "frozen"):
+            resp = request.urlopen("https://api.github.com/repos/xKynn/PathOfExileRPC/releases/latest")
+            data = json.load(resp)
+            info = win32api.GetFileVersionInfo('launcher.exe', "\\")
+            ms = info['FileVersionMS']
+            ls = info['FileVersionLS']
+            version = "%d.%d.%d.%d" % (win32api.HIWORD(ms), win32api.LOWORD(ms),
+                                           win32api.HIWORD(ls), win32api.LOWORD(ls))
+            latest_ver = parse_version(data['tag_name'])
+            current_ver = parse_version(version)
+            download_url = data["assets"][0]["browser_download_url"]
+            if latest_ver > current_ver:
+                request.urlretrieve(download_url, os.path.join(os.path.dirname(sys.executable),
+                                                               'updates', data["assets"][0]["name"]))
+            atexit.register(os.execl, "updater.exe", "updater.exe")
         try:
             with open('config.json') as f:
                 js = json.load(f)
@@ -92,7 +112,7 @@ class Launcher:
             self.quit()
 
     def quit(self):
-        self.cl.quit()
+        self.cl.do_quit()
         if hasattr(self.loop, "shutdown_asyncgens"):
             self.loop.run_until_complete(self.loop.shutdown_asyncgens())
         self.loop.close()
