@@ -40,6 +40,7 @@ class Launcher:
                 if reply.startswith("n"):
                     sys.exit()
                 print("Starting Update Process")
+                print(f"Update Notes: {data['body']}")
                 if not os.path.isdir(os.path.join(os.path.dirname(sys.executable), 'updates')):
                     os.mkdir(os.path.join(os.path.dirname(sys.executable), 'updates'))
 
