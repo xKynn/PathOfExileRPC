@@ -4,17 +4,18 @@ import json
 import os
 import logging
 import sys
+import time
 if hasattr(sys, "frozen"):
     import win32api
 
 from poeRPC import PoeRPC
 from pkg_resources import parse_version
+from progressbar import ProgressBar, Percentage, RotatingMarker, ETA, FileTransferSpeed, Bar
 from shutil import copy as cp
 from getdir import drives
 from pathlib import Path
 from urllib import request
 from win32com.shell import shell, shellcon
-
 
 logging.basicConfig(level=logging.INFO)
 
@@ -34,9 +35,30 @@ class Launcher:
             current_ver = parse_version(version)
             download_url = data["assets"][0]["browser_download_url"]
             if latest_ver > current_ver:
+                print("Found a newer release, would you like to update? (y/n)")
+                reply = input()
+                if reply.startswith("n"):
+                    sys.exit()
+                print("Starting Update Process")
+                if not os.path.isdir(os.path.join(os.path.dirname(sys.executable), 'updates')):
+                    os.mkdir(os.path.join(os.path.dirname(sys.executable), 'updates'))
+
+                widgets = [f'{data["assets"][0]["name"]}: ', Percentage(), ' ', Bar(marker=RotatingMarker()), ' ', ETA(), ' ',
+                           FileTransferSpeed()]
+                pbar = ProgressBar(widgets=widgets)
+
+                def dl_progress(count, blockSize, totalSize):
+                    if pbar.maxval is None:
+                        pbar.maxval = totalSize
+                        pbar.start()
+
+                    pbar.update(min(count * blockSize, totalSize))
+
                 request.urlretrieve(download_url, os.path.join(os.path.dirname(sys.executable),
-                                                               'updates', data["assets"][0]["name"]))
-            atexit.register(os.execl, "updater.exe", "updater.exe")
+                                                               'updates', data["assets"][0]["name"]),
+                                    reporthook=dl_progress)
+                atexit.register(os.execl, "updater.exe", "updater.exe")
+                sys.exit()
         try:
             with open('config.json') as f:
                 js = json.load(f)

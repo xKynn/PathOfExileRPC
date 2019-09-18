@@ -1,3 +1,4 @@
+import atexit
 import glob
 import os
 import sys
@@ -61,3 +62,5 @@ if __name__ == "__main__":
     latest_update = max(files, key=os.path.getctime)
     u = Updater(latest_update)
     u.update()
+    print("Starting launcher again..")
+    atexit.register(os.execl, "launcher.exe", "launcher.exe")
