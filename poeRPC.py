@@ -33,6 +33,7 @@ class PoeRPC:
         self.afk = False
         self.dnd = False
         self.afk_message = ""
+        self.dnd_message = ""
         self.account_name = account_name
         self.current_rpc = {}
         self.locations = {}
@@ -247,11 +248,11 @@ class PoeRPC:
             elif "DND mode is now" in message:
                 if message.split("DND mode is now O")[1][0] == "N":
                     self.dnd = True
-                    self.afk_message = message.split('Autoreply "')[1][:-1]
+                    self.dnd_message = message.split('Autoreply "')[1][:-1]
                     self.logger.info(f"DND: {self.afk_message}")
                 else:
                     self.dnd = False
-                    self.afk_message = ""
+                    self.dnd_message = ""
                     self.logger.info("DND: Turned Off")
         self.last_latest_message = log.split('\n')[-1] or log.split('\n')[-2]
         if event != LogEvents.LOGOUT:
@@ -262,11 +263,24 @@ class PoeRPC:
             self.current_rpc = {}
             self.update_rpc('large_image', 'login_screen')
             self.update_rpc('state', 'On Character Selection')
-        if self.afk or self.dnd:
-            if self.dnd:
-                self.update_rpc('details', f"DND: {self.afk_message}")
-            else:
-                self.update_rpc('details', f"AFK: {self.afk_message}")
+
+        def update_dnd():
+            self.update_rpc('details', f"DND: {self.dnd_message}")
+
+        def update_afk():
+            self.update_rpc('details', f"AFK: {self.afk_message}")
+
+        if not self.afk and "AFK" in self.current_rpc.get('details', '') \
+                or not self.dnd and "DND" in self.current_rpc.get('details', ''):
+            self.current_rpc.pop('details')
+
+        if self.dnd and self.afk and "AFK" not in self.current_rpc.get('details', ''):
+            update_afk()
+        elif self.afk and "AFK" not in self.current_rpc.get('details', ''):
+            update_afk()
+        elif self.dnd and "DND" not in self.current_rpc.get('details', ''):
+            update_dnd()
+
         if ping:
             state = self.current_rpc.get('state', '')
             if not 'Ping' in state:
